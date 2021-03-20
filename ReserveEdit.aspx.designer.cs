@@ -42,6 +42,15 @@ namespace hand_shaken_webform
         protected global::System.Web.UI.WebControls.Label price;
 
         /// <summary>
+        /// Emp_Id_List 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Emp_Id_List;
+
+        /// <summary>
         /// Emp_Id 控制項。
         /// </summary>
         /// <remarks>

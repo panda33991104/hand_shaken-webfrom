@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/hand_server.Master" AutoEventWireup="true" CodeBehind="AddOrder.aspx.cs" Inherits="hand_shaken_webform.AddOrder" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <h3>訂單管理/新增訂購單</h3>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <h3>訂單管理/新增訂購單</h3>
     <hr>
     
     <div class="row" style="margin-top: 5px;">
@@ -12,7 +14,7 @@
                     AutoGenerateColumns="False" Width="100%" CellSpacing="5"
                     ForeColor="Black" GridLines="Both" HeaderStyle-Font-Bold="True" CssClass="table-bordered">
                     <Columns>
-                        <asp:TemplateField HeaderText="商品名稱" HeaderStyle-Width="30%" ItemStyle-Width="20%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
+                        <asp:TemplateField HeaderText="商品名稱" HeaderStyle-Width="30%" ItemStyle-Width="20%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="black" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
                             <HeaderStyle Font-Bold="True" />
                             <ItemStyle HorizontalAlign='Center' VerticalAlign='Middle' BackColor="white" />
                             <ItemTemplate>
@@ -20,7 +22,7 @@
                                 <asp:Label ID="prod_name" Text='<%# Eval("prod_name") %>' runat="server" VerticalAlign='middle' />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="冰塊" HeaderStyle-Width="15%" ItemStyle-Width="15%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
+                        <asp:TemplateField HeaderText="冰塊" HeaderStyle-Width="15%" ItemStyle-Width="15%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="black" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
                             <HeaderStyle Font-Bold="True" />
                             <ItemTemplate>
                                 <asp:DropDownList ID="ice" runat="server" CssClass="form-control" >
@@ -31,7 +33,7 @@
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="甜度" HeaderStyle-Width="15%" ItemStyle-Width="15%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
+                        <asp:TemplateField HeaderText="甜度" HeaderStyle-Width="15%" ItemStyle-Width="15%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="black" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
                             <HeaderStyle Font-Bold="True" />
                             <ItemStyle HorizontalAlign='Center' VerticalAlign='Middle' BackColor="white" />
                             <ItemTemplate>
@@ -43,21 +45,21 @@
                                 </asp:DropDownList>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="價格" HeaderStyle-Width="10%" ItemStyle-Width="10%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
+                        <asp:TemplateField HeaderText="價格" HeaderStyle-Width="10%" ItemStyle-Width="10%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="black" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
                             <HeaderStyle Font-Bold="True" />
                             <ItemStyle HorizontalAlign='Center' VerticalAlign='Middle' BackColor="white" />
                             <ItemTemplate>
                                 <asp:Label ID="price" Text='<%# Eval("price") %>' runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="數量" HeaderStyle-Width="15%" ItemStyle-Width="15%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
+                        <asp:TemplateField HeaderText="數量" HeaderStyle-Width="15%" ItemStyle-Width="15%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="black" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
                             <HeaderStyle Font-Bold="True" />
                             <ItemStyle HorizontalAlign='Center' VerticalAlign='Middle' BackColor="white" />
                             <ItemTemplate>
                                 <asp:TextBox ID="qty" runat="server" CssClass="form-control" type="number" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="功能" HeaderStyle-Width="10%" ItemStyle-Width="10%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
+                        <asp:TemplateField HeaderText="功能" HeaderStyle-Width="10%" ItemStyle-Width="10%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="black" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
                             <HeaderStyle Font-Bold="True" />
                             <ItemStyle HorizontalAlign='Center' VerticalAlign='Middle' BackColor="white" />
                             <ItemTemplate>
@@ -74,14 +76,14 @@
             <div class="row" style="margin-bottom: 5px;">
                 <div class="col-lg-6">
                     <label>客戶性別</label>
-                    <asp:DropDownList ID="cust_Sex" AutoPostBack="true" runat="server" CssClass="form-control" style="display:inline;width:75%;margin-left:5px">
+                    <asp:DropDownList ID="cust_Age" AutoPostBack="true" runat="server" CssClass="form-control" style="display:inline;width:75%;margin-left:5px">
                                 <asp:ListItem Value="1">男</asp:ListItem>
                                 <asp:ListItem Value="2">女</asp:ListItem>
                     </asp:DropDownList>
                                 
                 </div>
                 <div class="col-lg-6">
-                    <label>客戶年齡</label><asp:DropDownList ID="cust_Age" AutoPostBack="true" runat="server" CssClass="form-control" Style="display: inline; width: 75%; margin-left: 5px">
+                    <label>客戶年齡</label><asp:DropDownList ID="cust_Sex" AutoPostBack="true" runat="server" CssClass="form-control" Style="display: inline; width: 75%; margin-left: 5px">
                         <asp:ListItem Value="1">未滿20歲</asp:ListItem>
                         <asp:ListItem Value="2">20-40歲</asp:ListItem>
                         <asp:ListItem Value="3">40-60歲</asp:ListItem>
@@ -99,7 +101,7 @@
                             <HeaderStyle Font-Bold="True" />
                             <ItemStyle HorizontalAlign='Center' VerticalAlign="Middle" BackColor="white" />
                             <ItemTemplate>
-                                <asp:Label Text='<%# Eval("Order_no") %>' runat="server" />
+                                <asp:Label Text='<%# Eval("item_no") %>' runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="商品名稱" ItemStyle-Width="20%" HeaderStyle-Font-Bold='false' HeaderStyle-BackColor="darkkhaki" HeaderStyle-Font-Size="15pt" HeaderStyle-CssClass="text-center" HeaderStyle-ForeColor="white">
@@ -155,4 +157,5 @@
             </div>
         </div>
     </div>
+   
 </asp:Content>

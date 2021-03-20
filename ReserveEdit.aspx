@@ -25,6 +25,7 @@
         <tr>
             <td>入庫人員</td>
             <td>
+                <asp:Dropdownlist ID="Emp_Id_List"  DataTextField='Emp_Name'  DataValueField="Emp_Id" runat="server"  CssClass="fulltext" width="100%"  />
                 <asp:label ID="Emp_Id"  Text='<%# Eval("Emp_Id") %>'  runat="server" CssClass="form-control"  />
             </td>
         </tr>

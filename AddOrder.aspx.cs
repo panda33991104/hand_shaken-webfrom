@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace hand_shaken_webform
 {
@@ -13,7 +11,6 @@ namespace hand_shaken_webform
         dbClass myDatabase = new dbClass();
         DataTable productTable = new DataTable();
         public static DataTable addItems;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -22,16 +19,34 @@ namespace hand_shaken_webform
                 Product_Item(sender, e);
 
             }
+            else
+            {
+
+            }
 
         }
+
         protected void Product_Item(object sender, EventArgs e)
         {
-
+            
             string sqlStr = "select prod_id, Prod_Name,  price from product";
             productTable = myDatabase.GetDataTable(sqlStr);
             product_Grid.DataSource = productTable;
             product_Grid.DataBind();
 
+            //Show_Option_Item(cust_Age, "3");
+            //Show_Option_Item(cust_Sex, "4");
+
+            //if (product_Grid.Rows.Count > 0)
+            //{
+            //    for (int i = 0; i < product_Grid.Rows.Count; i++)
+            //    {
+            //        DropDownList suger = (DropDownList)product_Grid.Rows[i].FindControl("suger");
+            //        Show_Option_Item(suger, "1");
+            //        DropDownList ice = (DropDownList)product_Grid.Rows[i].FindControl("ice");
+            //        Show_Option_Item(ice, "2");
+            //    }
+            //}
         }
         protected void Add_Item(object sender, EventArgs e)
         {
@@ -47,10 +62,10 @@ namespace hand_shaken_webform
                 TextBox qty = (TextBox)product_Grid.Rows[i].FindControl("qty");
                 if (id.Text == prod_id)
                 {
-                    if (qty.Text.Length > 0 && int.Parse(qty.Text) > 0)
+                    if (qty.Text.Length > 0 && int.Parse(qty.Text) > 0) 
                     {
                         DataRow addRow = addItems.NewRow();
-                        addRow["Order_no"] = (addItems.Rows.Count + 1).ToString();
+                        addRow["item_no"] = (addItems.Rows.Count + 1).ToString();
                         addRow["prod_id"] = id.Text;
                         addRow["prod_name"] = prodName.Text;
                         addRow["price"] = price.Text;
@@ -61,15 +76,15 @@ namespace hand_shaken_webform
                         addRow["qty"] = qty.Text;
                         addItems.Rows.Add(addRow);
                         Show_Grid();
-                    }
+                    } 
                 }
             }
         }
         protected void Del_Item(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            int Order_no = int.Parse((string)button.CommandArgument);
-            addItems.Rows.Remove(addItems.Rows[Order_no]);
+            int item_no = int.Parse((string)button.CommandArgument);
+            addItems.Rows.Remove(addItems.Rows[item_no]);
             Show_Grid();
         }
         protected void Show_Grid()
@@ -77,11 +92,11 @@ namespace hand_shaken_webform
             int count = 0;
             int qtyCount = 0;
             for (int i = 0; i < addItems.Rows.Count; i++)
-            {
-                addItems.Rows[i]["Order_no"] = i + 1;
+            {   
+                addItems.Rows[i]["item_no"] = i + 1;
                 int qty = int.Parse(addItems.Rows[i]["qty"].ToString());
                 qtyCount += qty;
-                count += (int.Parse(addItems.Rows[i]["price"].ToString()) * qty);
+                count += (int.Parse(addItems.Rows[i]["price"].ToString())* qty);
             }
             add_Product_Grid.DataSource = addItems;
             add_Product_Grid.DataBind();
@@ -111,48 +126,48 @@ namespace hand_shaken_webform
         {
             if (addItems.Rows.Count > 0)
             {
-
-                //string user_id = Session["user_name"].ToString();
-                string sqlstr = " Declare @Form_No int;";
-                //sqlstr += " Begin Tran";
-                sqlstr += " select @Form_No = isnull(max(order_id), 0) + 1 ";
-                sqlstr += " from order_form;";
-                sqlstr += " insert into order_form (order_id, created_id,status,create_time,cust_sex, cust_age) values(";
-                sqlstr += " @Form_No," + myDatabase.qo("1") + ",17,getDate(),";
-                sqlstr += myDatabase.qo(cust_Sex.SelectedValue.ToString()) + ",";
-                sqlstr += myDatabase.qo(cust_Age.SelectedValue.ToString()) + ");";
-                sqlstr += " insert into order_detail (order_id, prod_id,qty,sugur_type,ice_type) values";
-                for (int i = 0; i < addItems.Rows.Count; i++)
-                {
-                    DataRow row = addItems.Rows[i];
-                    string prod_id = row["prod_id"].ToString();
-                    string qty = row["qty"].ToString();
-                    string suger_id = row["suger_id"].ToString();
-                    string ice_id = row["ice_id"].ToString();
-                    sqlstr += "( @Form_No," + myDatabase.qo(prod_id) + "," + myDatabase.qo(qty) + "," + myDatabase.qo(suger_id) + "," + myDatabase.qo(ice_id) + ")";
-                    if (i + 1 == addItems.Rows.Count)
+                
+                    //string user_id = Session["user_name"].ToString();
+                    string sqlstr = " Declare @Form_No int;";
+                    //sqlstr += " Begin Tran";
+                    sqlstr += " select @Form_No = isnull(max(order_id), 0) + 1 ";
+                    sqlstr += " from order_form;";
+                    sqlstr += " insert into order_form (order_id, created_id,status,create_time,cust_sex, cust_age) values(";
+                    sqlstr += " @Form_No,"+ myDatabase.qo("1")+ ",17,getDate(),";
+                    sqlstr += myDatabase.qo(cust_Sex.SelectedValue.ToString()) + ",";
+                    sqlstr += myDatabase.qo(cust_Age.SelectedValue.ToString()) + ");";
+                    sqlstr += " insert into order_detail (order_id, prod_id,qty,sugur_type,ice_type) values";
+                    for (int i = 0; i < addItems.Rows.Count; i++)
                     {
-                        sqlstr += ";";
+                        DataRow row = addItems.Rows[i];
+                        string prod_id = row["prod_id"].ToString();
+                        string qty = row["qty"].ToString();
+                        string suger_id = row["suger_id"].ToString();
+                        string ice_id = row["ice_id"].ToString();
+                        sqlstr += "( @Form_No," + myDatabase.qo(prod_id) + "," + myDatabase.qo(qty) + "," + myDatabase.qo(suger_id) + "," + myDatabase.qo(ice_id) + ")";
+                        if (i + 1 == addItems.Rows.Count)
+                        {
+                            sqlstr += ";";
+                        }
+                        else
+                        {
+                            sqlstr += ",";
+                        }
                     }
-                    else
-                    {
-                        sqlstr += ",";
-                    }
-                }
-                myDatabase.execSQL(sqlstr);
-                addItems.Rows.Clear();
-                Show_Grid();
+                    myDatabase.execSQL(sqlstr);
+                    addItems.Rows.Clear();
+                    Show_Grid();
 
-
-            }
-            //else
-            //{
-            //    dialogclass.messagesimple("請選擇欲結帳的商品");
-            //}
 
         }
+        //else
+        //{
+        //    dialogclass.messagesimple("請選擇欲結帳的商品");
+        //}
 
-        protected void GridViewResults_OnRowDataBound(object sender, GridViewRowEventArgs e)
+}
+
+    protected void GridViewResults_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
@@ -160,18 +175,18 @@ namespace hand_shaken_webform
             }
         }
 
-
+    
 
         private DataTable Order_TempTable()
         {
             // Create a new DataTable titled 'Names.'
             DataTable tablex = new DataTable("Order");
 
-            // Order_no
-            DataColumn COrder_no = new DataColumn();
-            COrder_no.DataType = System.Type.GetType("System.String");
-            COrder_no.ColumnName = "COrder_no";
-            tablex.Columns.Add(COrder_no);
+            // item_no
+            DataColumn Citem_no = new DataColumn();
+            Citem_no.DataType = System.Type.GetType("System.String");
+            Citem_no.ColumnName = "item_no";
+            tablex.Columns.Add(Citem_no);
 
             // Add three column objects to the table.
             DataColumn Cprod_id = new DataColumn();
@@ -218,6 +233,5 @@ namespace hand_shaken_webform
 
             return tablex;
         }
-
     }
 }

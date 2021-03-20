@@ -10,7 +10,6 @@ namespace hand_shaken_webform
     public partial class Reserve : System.Web.UI.Page
     {
         dbClass mydb = new dbClass();
-        public DataTable depSet;
 
         protected void Page_Load(object sender, EventArgs e)
         {

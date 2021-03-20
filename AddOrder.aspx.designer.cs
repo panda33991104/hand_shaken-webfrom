@@ -24,15 +24,6 @@ namespace hand_shaken_webform
         protected global::System.Web.UI.WebControls.GridView product_Grid;
 
         /// <summary>
-        /// cust_Sex 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cust_Sex;
-
-        /// <summary>
         /// cust_Age 控制項。
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace hand_shaken_webform
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cust_Age;
+
+        /// <summary>
+        /// cust_Sex 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cust_Sex;
 
         /// <summary>
         /// add_Product_Grid 控制項。
