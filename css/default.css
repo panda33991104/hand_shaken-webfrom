@@ -1,0 +1,44 @@
+﻿/*圖片部分套用*/
+img{
+    height: auto;
+     max-width: 100%;
+}    
+
+#top{
+    background:#21507c;
+         /*水平對齊*/
+	text-align:center;
+}
+body{
+    background:#2a6796;
+}
+
+/*default頁面*/
+        /*#default {
+                height: auto;
+                /*position:定位*/
+		        position: relative;
+                /*限制網頁元素最大寬度不可以超過指定的限度*/
+		        max-width: 100%;
+                /*控制網頁元素的最小寬度*/
+		        min-width: 27em;
+                /*padding:上 右 下 左;*/
+		        padding: 4.5em 3em 3em 3em ;
+		        background: #6bc2fb;
+                /*transform(旋轉)-origin: x軸 y軸 z軸;
+                X 軸方向可以設定：left, center, right, 長度或百分比。
+                Y 軸方向可以設定：left, center, right, 長度或百分比。
+                Z 軸方向僅可設定長度。
+                -moz-相容 Firefox
+                -webkit-相容 Safari and Chrome
+                -ms- 相容 Internet Explorer
+                */
+		        -moz-transform-origin: 50% 50%;
+		        -webkit-transform-origin: 50% 50%;
+		        -ms-transform-origin: 50% 50%;
+		        transform-origin: 50% 50%;
+		        -moz-transform: rotateX(0deg);
+		        -webkit-transform: rotateX(0deg);
+		        -ms-transform: rotateX(0deg);
+		        transform: rotateX(0deg);
+        }*/
