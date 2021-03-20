@@ -12,7 +12,7 @@ namespace hand_shaken_webform
     public partial class ReserveEdit : System.Web.UI.Page
     {
         dbClass mydb = new dbClass();
-        public DataTable depSet;
+        public DataTable Emp_Id_Set;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -25,22 +25,25 @@ namespace hand_shaken_webform
                 if (Request.QueryString["Form_No"] != null)
                     Form_No.Text = Request.QueryString["Form_No"].ToString().Trim();
                 else
-                    Response.Redirect("~/ReserveCheck");
+                    Response.Redirect("~/Reserve");
+                /*抓取使用者帳號*/
+                prepareStaff(); Emp_Id_List.DataSource = Emp_Id_Set; Emp_Id_List.DataBind();
                 getDetail();
             }
+            /*抓取使用者帳號*/
+            void prepareStaff()
+            {
+                string sqlstr = "select Emp_id, Emp_name from Staff order by Emp_id";
+                Emp_Id_Set = mydb.GetDataTable(sqlstr);
+            }
+
 
             void getDetail()
             {
-                string sqlstr = " select std_name, sex, dep_id, club_id, religion from student where std_id = " + mydb.qo(Std_Id.Text);
+                string sqlstr = "select d.Form_No, M.mat_name,d.qty, d.Emp_Id, d.Import_Date, d.comment from Material M, Reserve_Import_Detail d where m.Mat_Id = d.mat_id and Form_No =" + mydb.qo(Form_No.Text);
                 DataTable myTable = mydb.GetDataTable(sqlstr);
-                Std_Name.Text = myTable.Rows[0][0].ToString();
-                //Sex
-                if (myTable.Rows[0][1].ToString() == "True")
-                {
-                    SexList.Items[0].Selected = true;
-                }
-                else
-                    SexList.Items[1].Selected = true;
+                mat_name.Text = myTable.Rows[0][0].ToString();
+
                 //Department
                 int selected = 0;
                 string Qdep_Id = myTable.Rows[0][2].ToString().Trim(); //Response.Write("Qdep_Id=" + Qdep_Id);
